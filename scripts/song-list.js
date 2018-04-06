@@ -1,25 +1,14 @@
 {
   album.songs.forEach( (song,index) => {
-    song.element = $(`
-      <tr>
-        <td>
-          <button>
-            <span class = "song-number">${index+1}</span>
-            <span class="ion-play"></span>
-            <span class="ion-pause"></span>
-          </button>
-        </td>
-        <td>${song.title}</td>
-        <td>${song.duration}</td>
-      </tr>
-      `);
+    //add each song to the list visually.
+    uiSongList(song,index);
 
+    //add event listener to each song.
     song.element.on('click', event => {
       player.playPause(song);
-      $('button#play-pause').attr('playState',player.playState);
+      $('button#play-pause').attr('playState',player.playState); //update html attribute playState.
+      uiSongDuration(player.currentlyPlaying.duration);          //update length of song at tail end of song slider.
     });
-
-    $('#song-list').append(song.element);
 
   });
 }

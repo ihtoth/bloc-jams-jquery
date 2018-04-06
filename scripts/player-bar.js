@@ -3,6 +3,7 @@
   $('button#play-pause').on('click',function(){
     player.playPause();
     $(this).attr('playState',player.playState);
+    uiSongDuration(player.currentlyPlaying.duration);
   });
 
   $('button#next').on('click',function(){
@@ -12,20 +13,18 @@
   $('button#previous').on('click', function(){
     changeSongs('previous');
   });
-
+  //why do some handler functions get handed 'event' and some don't?
   $('#time-control input').on('input', function(event){
       player.skipTo(event.target.value);
   });
 
+  $('#volume-control input').on('input', function(event){
+      player.setVolume(event.target.value);
+  })
+
   setInterval( () => {
     if (player.playState != 'playing'){ return; }
-
-    const currentTime = player.getTime();
-    const duration = player.getDuration();
-    const percent = (currentTime/duration)*100;
-    $('#time-control .current-time').text(currentTime);
-    $('#time-control input').val(percent);
-
+    uiTimeElapsed(player.getTime(), player.getDuration()); //update time elapsed in song on ui every second.
   }, 1000);
 
   function changeSongs(direction){
@@ -39,6 +38,8 @@
     if (direction == 'previous' && currentSongIndex-1 >= 0){
       player.playPause(album.songs[currentSongIndex-1]);
     }
+    //update total time of song
+    uiSongDuration(player.currentlyPlaying.duration);
   }
 
 }
