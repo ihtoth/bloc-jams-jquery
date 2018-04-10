@@ -1,5 +1,6 @@
 #player-bar {
-  background: hsla(0, 0%, 0%, 0.1);
+  background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+  background-size: cover;
   bottom: 0;
   height: 100px;
   position: fixed;
@@ -19,7 +20,7 @@
   font-size: 1.2rem;
   color: hsla(0, 0%, 100%, 0.5);
   transition: all 0.2s ease;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 #buttons button:hover, #buttons button:focus {
@@ -60,7 +61,7 @@
   margin: 0.5rem auto;
   /* max-width: 640px; */
   width: 50%;
-} 
+}
 
 #time-control div,
 #volume-control div {
@@ -78,8 +79,8 @@
 }
 
 #volume-control {
-  transform: translateY(-50%);
-  top: 66%;
+  /* transform: translateY(-50%);
+  top: 66%; */
   position: absolute;
   right: 2rem;
   width: 15%;
